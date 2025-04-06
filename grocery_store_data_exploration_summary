@@ -1,0 +1,45 @@
+1. What is the average total spent by item?
+
+avg_spend=data.groupby('Item')['TotalSpend'].mean().sort_values(ascending=False)
+print("Average Total Spend by Item")
+print(avg_spend)
+
+2. Which day of week has the most sales?
+
+sales_by_day=data.groupby('DayOfWeek')['TotalSpend'].sum().sort_values(ascending=False)
+print("Total Sales by Day")
+print(sales_by_day)
+
+3. What is the most popular item?
+
+popular_item = data.groupby('Item')['Quantity'].sum().sort_values(ascending=False)
+print("Most Popular Item (Quantity Sold):")
+print(popular_item)
+
+4. What is the average spend by Membership Status?
+
+member_spend = data.groupby('Member')['TotalSpend'].mean()
+print("Average Spend by Membership Status:")
+print(member_spend)
+
+5. Plot TotalSpend by Item.
+
+data.groupby('Item')['TotalSpend'].sum().plot(kind='bar',color='skyblue')
+plt.title("Total Revenue by Item")
+plt.ylabel("Total Spend($)")
+plt.show()
+
+6. Show age distribute of customers
+
+data['Age'].plot(kind='box',vert=False)
+plt.title("Age Distribution of Customers")
+plt.show()
+
+7. Show correlation between Age and TotalSpend
+
+print(data[['Age','TotalSpend']].corr())
+
+8. How does revenue trend across the recorded dates?
+
+data.groupby('Date')['TotalSpend'].sum().plot(title='Daily Revenue Title')
+plt.show()
